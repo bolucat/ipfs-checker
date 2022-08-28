@@ -14,7 +14,7 @@ class Status extends UiComponent {
     async check() {
         // test by loading subresource via img.src (path will work on both old and subdomain gws)
         const gwUrl = new URL(this.parent.gateway);
-        const imgPathUrl = new URL(`${gwUrl.protocol}//${gwUrl.hostname}/ipfs/${IMG_HASH}?now=${Date.now()}&filename=1x1.png#x-ipfs-companion-no-redirect`);
+        const imgPathUrl = new URL(`${gwUrl.protocol}//${gwUrl.hostname}/ipfs/${IMG_HASH}?now=${Date.now()}&filename=1x1.png`);
         await checkViaImgSrc(imgPathUrl).catch((err) => {
             if (err != null) {
                 log.error(this.parent.gateway, err);
