@@ -27,7 +27,7 @@ class GatewayNode extends UiComponent /* implements Checkable */ {
 
   atLeastOneSuccess = false
 
-  constructor (readonly parent: Results, gateway: string, index: unknown) {
+  constructor(readonly parent: Results, gateway: string, index: unknown) {
     super(parent, 'div', 'Node')
 
     this.tag.empty()
@@ -63,7 +63,7 @@ class GatewayNode extends UiComponent /* implements Checkable */ {
     this.checkingTime = 0
   }
 
-  public async check () {
+  public async check() {
     this.checkingTime = Date.now()
     // const onFailedCheck = () => { this.status.down = true }
     // const onSuccessfulCheck = () => { this.status.up = true }
@@ -100,7 +100,7 @@ class GatewayNode extends UiComponent /* implements Checkable */ {
     })
   }
 
-  private onSuccessfulCheck () {
+  private onSuccessfulCheck() {
     if (!this.atLeastOneSuccess) {
       log.info(`For gateway '${this.gateway}', at least one check was successful`)
       this.atLeastOneSuccess = true
@@ -116,7 +116,7 @@ class GatewayNode extends UiComponent /* implements Checkable */ {
         // this.flag.tag.element.remove()
         // this.link.textContent = ''
         // this.link.append(this.flag.tag.element, anchor)
-        this.link.innerHTML = `<a title="${host}" href="${url.toString()}#x-ipfs-companion-no-redirect" target="_blank">${host}</a>`
+        this.link.innerHTML = `<a title="${host}" href="${url.toString()}/" target="_blank">${host}</a>`
       }
       const ms = Date.now() - this.checkingTime
       this.tag.style.order = ms.toString()
@@ -135,7 +135,7 @@ class GatewayNode extends UiComponent /* implements Checkable */ {
   //   }
   // }
 
-  onerror () {
+  onerror() {
     this.tag.err()
   }
 }

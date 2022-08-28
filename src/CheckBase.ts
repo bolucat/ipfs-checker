@@ -10,27 +10,27 @@ class CheckBase extends UiComponent implements Checkable {
   _className = 'Not-set'
   _tagName = 'Not-set'
 
-  get className () {
+  get className() {
     return this._className
   }
 
-  get tagName () {
+  get tagName() {
     return this._tagName
   }
 
-  constructor (protected readonly parent: Checker | GatewayNode, ...tagParams: ConstructorParameters<typeof Tag>) {
+  constructor(protected readonly parent: Checker | GatewayNode, ...tagParams: ConstructorParameters<typeof Tag>) {
     super(parent, ...tagParams)
   }
 
-  check () {
+  check() {
 
   }
 
-  checked () {
+  checked() {
 
   }
 
-  onerror () {
+  onerror() {
     this.tag.err()
   }
 }

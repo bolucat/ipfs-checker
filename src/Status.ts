@@ -12,14 +12,14 @@ const log = new Log('Status')
 class Status extends UiComponent {
   private _up: boolean = false
   private _down: boolean = false
-  constructor (readonly parent: GatewayNode) {
+  constructor(readonly parent: GatewayNode) {
     super(parent, 'div', 'Status')
   }
 
-  async check () {
+  async check() {
     // test by loading subresource via img.src (path will work on both old and subdomain gws)
     const gwUrl = new URL(this.parent.gateway)
-    const imgPathUrl = new URL(`${gwUrl.protocol}//${gwUrl.hostname}/ipfs/${IMG_HASH}?now=${Date.now()}&filename=1x1.png#x-ipfs-companion-no-redirect`)
+    const imgPathUrl = new URL(`${gwUrl.protocol}//${gwUrl.hostname}/ipfs/${IMG_HASH}?now=${Date.now()}&filename=1x1.png`)
     await checkViaImgSrc(imgPathUrl).catch((err) => {
       if (err != null) {
         log.error(this.parent.gateway, err)
@@ -37,22 +37,22 @@ class Status extends UiComponent {
     })
   }
 
-  get down () {
+  get down() {
     return this._down
   }
 
-  set down (value: boolean) {
+  set down(value: boolean) {
     if (!this.up && !this.down) {
       this._down = true
       this.tag.lose()
     }
   }
 
-  get up () {
+  get up() {
     return this._up
   }
 
-  set up (value: boolean) {
+  set up(value: boolean) {
     if (!this.up && !this.down) {
       this._up = true
       this.tag.global()
@@ -65,7 +65,7 @@ class Status extends UiComponent {
   //   // this.tag.global()
   // }
 
-  onerror () {
+  onerror() {
     throw new Error('Not implemented')
   }
 }
